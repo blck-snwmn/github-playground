@@ -5,13 +5,12 @@ on:
     # branches to consider in the event; optional, defaults to all
     branches:
       - main
-      
-      
+
 jobs:
   update_release_draft:
     runs-on: ubuntu-latest
     steps:
-     - uses: release-drafter/release-drafter@v5
+      - uses: release-drafter/release-drafter@v5
         with:
           config-name: release-drafter-config.yml
         env:
