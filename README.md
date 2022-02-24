@@ -7,6 +7,7 @@ graph TD
   B --> C;
   A --> C;
   C --> D;
+  D --> A;
 ```
 
 ```mermaid
