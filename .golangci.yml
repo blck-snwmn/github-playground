@@ -3,6 +3,7 @@ linters:
     - staticcheck
   disable:
     - deadcode
+    - unused
 linters-settings:
   staticcheck:
     checks: ["all"]
