@@ -28,5 +28,6 @@ func main() {
 	}
 	xs := fmt.Sprintf("%v", x)
 	fmt.Println(xs)
+	_ = returnError()
 	getId()
 }
