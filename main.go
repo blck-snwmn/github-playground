@@ -1,16 +1,18 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 )
+
+//Deprecated: test
+type Hoge struct{}
 
 //Deprecated: test
 func hello() {
 	fmt.Println("hello world")
 }
 
-//Deprecated: aaaa
+// Deprecated: aaaaa
 const x = 10
 
 //Deprecated: aaaa
@@ -18,9 +20,9 @@ func getId() {
 	fmt.Println(x)
 }
 
-func returnError() error {
-	return errors.New(fmt.Sprintf("aaa"))
-}
+// func returnError() error {
+// 	return errors.New(fmt.Sprintf("aaa"))
+// }
 
 func main() {
 	hello()
@@ -32,4 +34,6 @@ func main() {
 	xs := fmt.Sprintf("%v", x)
 	fmt.Println(xs)
 	getId()
+	h := Hoge{}
+	fmt.Println(h)
 }
