@@ -4,10 +4,6 @@ linters:
   enable:
     - staticcheck
     - gosec
-  disable:
-    - deadcode
-    - unused
-    - gosimple
 linters-settings:
   staticcheck:
     go: "1.17"
