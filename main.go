@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github/blck-snwmn/github-playground/a"
 )
 
 //Deprecated: test
@@ -36,4 +37,5 @@ func main() {
 	getId()
 	h := Hoge{}
 	fmt.Println(h)
+	a.Do()
 }
