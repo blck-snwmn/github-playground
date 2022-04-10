@@ -10,6 +10,10 @@ func hello() {
 	fmt.Println("hello world")
 }
 
+func getId() {
+
+}
+
 func returnError() error {
 	return errors.New(fmt.Sprintf("aaa"))
 }
@@ -23,4 +27,5 @@ func main() {
 	}
 	xs := fmt.Sprintf("%v", x)
 	fmt.Println(xs)
+	getId()
 }

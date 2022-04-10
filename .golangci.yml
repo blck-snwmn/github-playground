@@ -1,5 +1,7 @@
 linters:
-  enable-all: true
+  enable:
+    - staticcheck
+    - gosec
   disable:
     - deadcode
     - unused
