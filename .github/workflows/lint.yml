@@ -21,3 +21,4 @@ jobs:
         with:
           version: v1.41.1
           skip-go-installation: true
+          args: --config .golangci.yml
