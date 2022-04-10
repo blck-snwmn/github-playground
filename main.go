@@ -11,8 +11,11 @@ func hello() {
 }
 
 //Deprecated: aaaa
-func getId() {
+const x = 10
 
+//Deprecated: aaaa
+func getId() {
+	fmt.Println(x)
 }
 
 func returnError() error {
@@ -28,6 +31,5 @@ func main() {
 	}
 	xs := fmt.Sprintf("%v", x)
 	fmt.Println(xs)
-	_ = returnError()
 	getId()
 }
