@@ -5,11 +5,12 @@ import (
 	"fmt"
 )
 
-// Deprecated: test
+//Deprecated: test
 func hello() {
 	fmt.Println("hello world")
 }
 
+//Deprecated: aaaa
 func getId() {
 
 }
