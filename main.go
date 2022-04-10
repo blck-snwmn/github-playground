@@ -15,4 +15,5 @@ func main() {
 	hello()
 	hello()
 	returnError()
+	fmt.Println(10 % 1)
 }
