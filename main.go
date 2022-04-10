@@ -9,4 +9,5 @@ func hello() {
 
 func main() {
 	hello()
+	hello()
 }
