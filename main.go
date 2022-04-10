@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // Deprecated: test
 func hello() {
@@ -8,7 +11,7 @@ func hello() {
 }
 
 func returnError() error {
-	return nil
+	return errors.New(fmt.Sprintf("aaa"))
 }
 
 func main() {
