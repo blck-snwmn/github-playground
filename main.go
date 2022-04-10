@@ -14,7 +14,6 @@ func returnError() error {
 func main() {
 	hello()
 	hello()
-	returnError()
 	x := 10
 	if x%1 == 0 {
 		fmt.Println("hello")
