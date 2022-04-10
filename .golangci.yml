@@ -5,6 +5,7 @@ linters:
   disable:
     - deadcode
     - unused
+    - gosimple
   exclude-use-default: false
 linters-settings:
   staticcheck:
