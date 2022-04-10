@@ -1,2 +1,4 @@
 issues:
   exclude-use-default: false
+  include:
+    - SA4028
