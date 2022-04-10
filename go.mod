@@ -1,3 +1,3 @@
 module github/blck-snwmn/github-playground
 
-go 1.18
+go 1.17
