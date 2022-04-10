@@ -1,6 +1,8 @@
 linters:
   enable:
     - staticcheck
+  disable:
+    - unused
 linters-settings:
   staticcheck:
     checks: ["all"]
