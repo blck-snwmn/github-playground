@@ -18,4 +18,6 @@ func main() {
 	if x%1 == 0 {
 		fmt.Println("hello")
 	}
+	xs := fmt.Sprintf("%v", x)
+	fmt.Println(xs)
 }
