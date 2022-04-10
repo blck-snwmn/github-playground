@@ -7,4 +7,5 @@ linters:
     - unused
 linters-settings:
   staticcheck:
+    go: "1.17"
     checks: ["all"]
