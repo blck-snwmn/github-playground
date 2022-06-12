@@ -1,0 +1,17 @@
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        required: true
+        default: "main"
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        ref: ${{ github.event.inputs.branch }}
+      - name: check
+        run: |
+          git branch --contains
+    
