@@ -12,3 +12,5 @@ func do() {}
 func main() {
 	hello()
 }
+
+func do3() {}
