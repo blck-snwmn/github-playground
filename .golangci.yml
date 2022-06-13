@@ -1,0 +1,6 @@
+run:
+  go: "1.17"
+issues:
+  exclude-use-default: false
+  include:
+    - SA4028
