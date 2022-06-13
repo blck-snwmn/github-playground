@@ -7,6 +7,8 @@ func hello() {
 	fmt.Println("hello world")
 }
 
+func do() {}
+
 func main() {
 	hello()
 }
