@@ -2,6 +2,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
+        description: 'select existing branch'
         required: true
         default: "main"
 
