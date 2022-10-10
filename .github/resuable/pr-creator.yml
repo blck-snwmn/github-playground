@@ -1,0 +1,74 @@
+name: PR creator
+on:
+  workflow_call:
+    inputs:
+      dst-repo:
+        required: true
+        type: string
+      dst-branch:
+        default: main
+        type: string
+      src-repo:
+        required: true
+        type: string
+      src-branch:
+        default: main
+        type: string
+      src-file:
+        required: true
+        type: string
+    secrets:
+      app_id:
+        required: true
+      private_key:
+        required: true
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+      - name: checkout dst 
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ inputs.dst-repo }}
+          ref: ${{ inputs.dst-branch }}
+          token: ${{ steps.generate_token.outputs.token }}
+          path: dst
+      - name: checkout src 
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ inputs.src-repo }}
+          ref: ${{ inputs.src-branch }}
+          path: src
+      - name: Move target file
+        run: cp src/${{ inputs.src-file }}  dst/${{ inputs.src-file }}
+      - name: check diff
+        id: diff
+        run: |
+          git add -N ${{ inputs.src-file }}
+          git diff --exit-code --quiet
+        continue-on-error: true
+        working-directory: ./dst
+      - name: Commit & Push
+        if: steps.diff.outcome == 'failure' # diff がある場合のみ実行する
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c feat/update-file
+          git add ${{ inputs.src-file }}
+          git commit -m "Update ${{ inputs.src-file }}"
+          git status
+          git push -u origin HEAD:feat/update-file
+          gh pr create \
+            --title "Update file" \
+            --body "auto generate" \
+            --base ${{ inputs.dst-branch }} \
+            --head "feat/update-file"
+        env:
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+        working-directory: ./dst
