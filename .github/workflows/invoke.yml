@@ -1,0 +1,23 @@
+name: Greet
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  greet:
+    runs-on: 'ubuntu-20.04'
+    steps:
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.INVOKER_APP_ID }}
+          private_key: ${{ secrets.INVOKER_PRIVATE_KEY }}
+      - name: Invoke workflow
+        run: |
+          gh workflow run hello-world.yml -r main -R blck-snwmn/notifiee-sample
+        env:
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
