@@ -2,13 +2,11 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/blck-snwmn/privatesample"
 )
 
 // Deprecated: test
 func hello() {
-	fmt.Println(privatesample.Greet())
+	fmt.Println("hello world!")
 }
 
 func do() {}
