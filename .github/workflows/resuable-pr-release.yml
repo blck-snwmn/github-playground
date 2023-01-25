@@ -4,8 +4,10 @@ on:
       template:
         type: string
       from:
+        required: true
         type: string
       to:
+        required: true
         type: string
 jobs:
   git-pr-release:
@@ -17,7 +19,7 @@ jobs:
       - name: use default template
         if: ${{ inputs.template == '' }}
         run: |
-          echo "Release <%= Time.now %>\n<% pull_requests.each do |pr| -%>\n<%=  pr.to_checklist_item %>\n<% end -%>" > .git-pr-release.erb
+          echo  "Release <%= Time.now %>\n<% pull_requests.each do |pr| -%>\n<%=  pr.to_checklist_item %>\n<% end -%>" > .git-pr-release.erb
       - name: use inputs.template
         if: ${{ inputs.template != '' }}
         run: |
@@ -25,17 +27,15 @@ jobs:
       - name: show file
         run: |
           cat .git-pr-release.erb
-      # - name: test
-      #   run: |
-      # - uses: actions/setup-ruby@v1
-      #   with:
-      #     ruby-version: 3.1
-      # - run: gem install --no-document git-pr-release
-      # - run: git-pr-release --squashed
-      #   env:
-      #     GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     GIT_PR_RELEASE_BRANCH_PRODUCTION: ${{ inputs.to }}
-      #     GIT_PR_RELEASE_BRANCH_STAGING: ${{ inputs.from }}
-      #     GIT_PR_RELEASE_LABELS: pr-release
-      #     GIT_PR_RELEASE_TEMPLATE: .git-pr-release.erb
-      #     TZ: Asia/Tokyo
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+      - run: gem install --no-document git-pr-release
+      - run: git-pr-release --squashed
+        env:
+          GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_PR_RELEASE_BRANCH_PRODUCTION: ${{ inputs.to }}
+          GIT_PR_RELEASE_BRANCH_STAGING: ${{ inputs.from }}
+          GIT_PR_RELEASE_LABELS: pr-release
+          GIT_PR_RELEASE_TEMPLATE: .git-pr-release.erb
+          TZ: Asia/Tokyo
