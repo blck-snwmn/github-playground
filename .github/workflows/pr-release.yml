@@ -6,6 +6,9 @@ on:
 jobs:
   git-pr-release:
     uses: ./.github/workflows/resuable-pr-release.yml
+    with:
+      from: feat/test
+      to: main
   gen-template:
     runs-on: ubuntu-latest
     outputs:
@@ -21,3 +24,5 @@ jobs:
     uses: ./.github/workflows/resuable-pr-release.yml
     with:
       template: "${{needs.gen-template.outputs.template}}"
+      from: feat/test
+      to: main
