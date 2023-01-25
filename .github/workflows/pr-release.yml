@@ -17,7 +17,7 @@ jobs:
           script: |
             core.exportVariable('TEMPLATE', 'ReleaseZ <%= Time.now %>\n<% pull_requests.each do |pr| -%>\n<%=  pr.to_checklist_item %>\n<% end -%>')
   git-pr-release-w-template:
-    needs: en-template
+    needs: gen-template
     uses: ./.github/workflows/resuable-pr-release.yml
     with:
       template: "${{needs.en-template.outputs.template}"
