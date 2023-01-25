@@ -6,7 +6,18 @@ on:
 jobs:
   git-pr-release:
     uses: ./.github/workflows/resuable-pr-release.yml
+  gen-template:
+    runs-on: ubuntu-latest
+    outputs:
+      template: ${{ env.TEMPLATE }}
+    steps:
+      - name: gen template
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.exportVariable('TEMPLATE', 'ReleaseZ <%= Time.now %>\n<% pull_requests.each do |pr| -%>\n<%=  pr.to_checklist_item %>\n<% end -%>')
   git-pr-release-w-template:
+    needs: en-template
     uses: ./.github/workflows/resuable-pr-release.yml
     with:
-      template: 'hello world'
+      template: "${{needs.en-template.outputs.template}"
