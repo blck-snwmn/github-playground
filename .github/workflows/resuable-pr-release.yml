@@ -27,7 +27,7 @@ jobs:
       - name: show file
         run: |
           cat .git-pr-release.erb
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
       - run: gem install --no-document git-pr-release
