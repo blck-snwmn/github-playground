@@ -19,7 +19,7 @@ jobs:
         if: ${{ inputs.template == '' }}
         with:
           script: |
-            core.exportVariable('TEMPLATE', 'test')
+            core.exportVariable('TEMPLATE', 'Release <%= Time.now %>\n<% pull_requests.each do |pr| -%>\n<%=  pr.to_checklist_item %>\n<% end -%>')
       - name: use inputs.template
         if: ${{ inputs.template != '' }}
         run: |
