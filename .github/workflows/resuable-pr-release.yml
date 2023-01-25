@@ -24,12 +24,14 @@ jobs:
         if: ${{ inputs.template != '' }}
         run: |
           echo "TEMPLATE=${{ inputs.template }}" >> $GITHUB_ENV
-      - name: show
+      - name: create file
         run: |
-          echo "${{ env.TEMPLATE }}"
+          echo "${{ env.TEMPLATE }}" > .git-pr-release.erb
+      - name: show file
+        run: |
+          cat .git-pr-release.erb
       # - name: test
       #   run: |
-      #     echo "${{ env.TEMPLATE }}" > .git-pr-release.erb
       # - uses: actions/setup-ruby@v1
       #   with:
       #     ruby-version: 3.1
