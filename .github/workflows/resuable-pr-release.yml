@@ -3,26 +3,33 @@ on:
     inputs:
       template:
         type: string
+      from:
+        type: string
+      to:
+        type: string
 jobs:
   git-pr-release:
     runs-on: ubuntu-latest
     steps:
-      - name: test
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # git-pr-release needs the git histories
+      - name: use default template
+        uses: actions/github-script@v6
         if: ${{ inputs.template == '' }}
-        run: |
-          echo "TEMPLATE=test" >> $GITHUB_ENV
-      - name: test
+        with:
+          script: |
+            core.exportVariable('TEMPLATE', 'test')
+      - name: use inputs.template
         if: ${{ inputs.template != '' }}
         run: |
           echo "TEMPLATE=${{ inputs.template }}" >> $GITHUB_ENV
-      - name: test
+      - name: show
         run: |
           echo "${{ env.TEMPLATE }}"
-
-
-      # - uses: actions/checkout@v3
-      #   with:
-      #     fetch-depth: 0 # git-pr-release needs the git histories
+      # - name: test
+      #   run: |
+      #     echo "${{ env.TEMPLATE }}" > .git-pr-release.erb
       # - uses: actions/setup-ruby@v1
       #   with:
       #     ruby-version: 3.1
@@ -30,8 +37,8 @@ jobs:
       # - run: git-pr-release --squashed
       #   env:
       #     GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     GIT_PR_RELEASE_BRANCH_PRODUCTION: main
-      #     GIT_PR_RELEASE_BRANCH_STAGING: develop
+      #     GIT_PR_RELEASE_BRANCH_PRODUCTION: ${{ inputs.to }}
+      #     GIT_PR_RELEASE_BRANCH_STAGING: ${{ inputs.from }}
       #     GIT_PR_RELEASE_LABELS: pr-release
-          # GIT_PR_RELEASE_TEMPLATE: .github/git-pr-release.erb
-          # TZ: Asia/Tokyo
+      #     GIT_PR_RELEASE_TEMPLATE: .git-pr-release.erb
+      #     TZ: Asia/Tokyo
