@@ -25,7 +25,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            core.exportVariable('TEMPLATE', '${{ inputs.template }}')
+            core.exportVariable('TEMPLATE', "${{ inputs.template }}")
       - name: create file
         run: |
           echo "${{ env.TEMPLATE }}" > .git-pr-release.erb
