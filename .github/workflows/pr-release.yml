@@ -9,20 +9,20 @@ jobs:
     with:
       from: main
       to: release-test
-  gen-template:
-    runs-on: ubuntu-latest
-    outputs:
-      template: ${{ env.TEMPLATE }}
-    steps:
-      - name: gen template
-        uses: actions/github-script@v6
-        with:
-          script: |
-            core.exportVariable('TEMPLATE', 'ReleaseZ <%= Time.now %>\n<% pull_requests.each do |pr| -%>\n<%=  pr.to_checklist_item %>\n<% end -%>')
-  git-pr-release-w-template:
-    needs: gen-template
-    uses: ./.github/workflows/resuable-pr-release.yml
-    with:
-      template: "${{needs.gen-template.outputs.template}}"
-      from: main
-      to: release-test
+  # gen-template:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     template: ${{ env.TEMPLATE }}
+  #   steps:
+  #     - name: gen template
+  #       uses: actions/github-script@v6
+  #       with:
+  #         script: |
+  #           core.exportVariable('TEMPLATE', "ReleaseZ  <%= Time.now %>\n<% pull_requests.each do |pr| -%>\n<%=  pr.to_checklist_item %>\n<% end -%>")
+  # git-pr-release-w-template:
+  #   needs: gen-template
+  #   uses: ./.github/workflows/resuable-pr-release.yml
+  #   with:
+  #     template: "${{needs.gen-template.outputs.template}}"
+  #     from: main
+  #     to: release-test
