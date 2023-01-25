@@ -20,4 +20,4 @@ jobs:
     needs: gen-template
     uses: ./.github/workflows/resuable-pr-release.yml
     with:
-      template: "${{needs.gen-template.outputs.template}"
+      template: "${{needs.gen-template.outputs.template}}"
