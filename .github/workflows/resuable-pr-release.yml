@@ -16,19 +16,12 @@ jobs:
           fetch-depth: 0 # git-pr-release needs the git histories
       - name: use default template
         if: ${{ inputs.template == '' }}
-        uses: actions/github-script@v6
-        with:
-          script: |
-            core.exportVariable('TEMPLATE', 'Release <%= Time.now %>\n<% pull_requests.each do |pr| -%>\n<%=  pr.to_checklist_item %>\n<% end -%>')
+        run: |
+          echo "Release <%= Time.now %>\n<% pull_requests.each do |pr| -%>\n<%=  pr.to_checklist_item %>\n<% end -%>" > .git-pr-release.erb
       - name: use inputs.template
         if: ${{ inputs.template != '' }}
-        uses: actions/github-script@v6
-        with:
-          script: |
-            core.exportVariable('TEMPLATE', "'${{ inputs.template }}'")
-      - name: create file
         run: |
-          echo "${{ env.TEMPLATE }}" > .git-pr-release.erb
+          echo "${{ inputs.template }}" > .git-pr-release.erb
       - name: show file
         run: |
           cat .git-pr-release.erb
