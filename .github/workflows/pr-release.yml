@@ -6,3 +6,7 @@ on:
 jobs:
   git-pr-release:
     uses: ./.github/workflows/resuable-pr-release.yml
+  git-pr-release-w-template:
+    uses: ./.github/workflows/resuable-pr-release.yml
+    with:
+      template: 'hello world'
