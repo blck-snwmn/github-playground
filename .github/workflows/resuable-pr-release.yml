@@ -12,12 +12,12 @@ jobs:
         run: |
           echo "TEMPLATE=test" >> $GITHUB_ENV
       - name: test
-          if: ${{ inputs.template != '' }}
-          run: |
-            echo "TEMPLATE=${{ inputs.template }}" >> $GITHUB_ENV
+        if: ${{ inputs.template != '' }}
+        run: |
+          echo "TEMPLATE=${{ inputs.template }}" >> $GITHUB_ENV
       - name: test
-          run: |
-            echo "${{ env.template }}"
+        run: |
+          echo "${{ env.template }}"
 
 
       # - uses: actions/checkout@v3
