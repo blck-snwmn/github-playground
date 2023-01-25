@@ -1,0 +1,8 @@
+name: PR Release
+
+on:
+  push:
+  
+jobs:
+  git-pr-release:
+    uses: ./.github/workflows/resuable-pr-release.yml
