@@ -37,4 +37,4 @@
             --base main \
             --head "feat/update-file"
         env:
-          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+          GH_TOKEN: ${{ github.token }}
