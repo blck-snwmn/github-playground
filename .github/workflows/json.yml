@@ -12,8 +12,6 @@
      runs-on: ubuntu-latest
      steps:
       - uses: actions/checkout@v3
-        with:
-          ref: main
       - name: create file
         run: |
           echo "${{ github.event.inputs.json }}" > gas.json
