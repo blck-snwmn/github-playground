@@ -36,7 +36,6 @@
           gh pr create \
             --title "Update file" \
             --body "auto generate" \
-            --base "main" \
-            --head "feat/update-file"
+            --base "main" 
         env:
           GH_TOKEN: ${{ github.token }}
