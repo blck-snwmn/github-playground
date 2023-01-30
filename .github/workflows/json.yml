@@ -21,16 +21,20 @@
           git add -N gas.json
           git diff --exit-code --quiet
         continue-on-error: true
+      - name: Set current datetime as env variable
+        env:
+          TZ: 'Asia/Tokyo' # タイムゾーン指定
+        run: echo "CURRENT_UNIX=$(date +%s)" >> $GITHUB_ENV
       - name: Commit & Push
         if: steps.diff.outcome == 'failure' # diff がある場合のみ実行する
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git switch -c feat/update-file
+          git switch -c feat/update-file-${{CURRENT_UNIX}}
           git add gas.json
           git commit -m "Update gas.json"
           git status
-          git push -u origin HEAD:feat/update-file
+          git push -u origin HEAD:feat/update-file-${{CURRENT_UNIX}}
           gh pr create \
             --title "Update file" \
             --body "auto generate" \
