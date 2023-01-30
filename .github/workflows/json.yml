@@ -30,11 +30,11 @@
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git switch -c feat/update-file-${{CURRENT_UNIX}}
+          git switch -c feat/update-file-${{env.CURRENT_UNIX}}
           git add gas.json
           git commit -m "Update gas.json"
           git status
-          git push -u origin HEAD:feat/update-file-${{CURRENT_UNIX}}
+          git push -u origin HEAD:feat/update-file-${{env.CURRENT_UNIX}}
           gh pr create \
             --title "Update file" \
             --body "auto generate" \
