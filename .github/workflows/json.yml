@@ -14,7 +14,7 @@
       - uses: actions/checkout@v3
       - name: create file
         run: |
-          echo "${{ github.event.inputs.json }}" > gas.json
+          echo '${{ github.event.inputs.json }}' > gas.json
       - name: check diff
         id: diff
         run: |
