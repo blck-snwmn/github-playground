@@ -11,4 +11,29 @@
    hello_job:
      runs-on: ubuntu-latest
      steps:
-       - run: echo "hello, ${{ github.event.inputs.json }}"
+      - name: create file
+        run: |
+          echo "${{ github.event.inputs.json }}" > gas.json
+      - name: check diff
+        id: diff
+        run: |
+          git add -N gas.json
+          git diff --exit-code --quiet
+        continue-on-error: true
+      - name: Commit & Push
+        if: steps.diff.outcome == 'failure' # diff がある場合のみ実行する
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c feat/update-file
+          git add gas.json
+          git commit -m "Update gas.json"
+          git status
+          git push -u origin HEAD:feat/update-file
+          gh pr create \
+            --title "Update file" \
+            --body "auto generate" \
+            --base main \
+            --head "feat/update-file"
+        env:
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
