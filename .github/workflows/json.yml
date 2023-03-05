@@ -39,6 +39,7 @@
             --title "Update file" \
             --body "auto generate" \
             --base "main"  \
-            --label "generated" 
+            --label "generated"  \
+            -F ".github/PULL_REQUEST_TEMPLATE/auto_generated.md"
         env:
           GH_TOKEN: ${{ github.token }}
