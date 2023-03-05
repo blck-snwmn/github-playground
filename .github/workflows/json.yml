@@ -38,6 +38,7 @@
           gh pr create \
             --title "Update file" \
             --body "auto generate" \
-            --base "main" 
+            --base "main"  \
+            --label "generated" 
         env:
           GH_TOKEN: ${{ github.token }}
