@@ -1,5 +1,11 @@
 # github-playground
 
+|workflow|description|
+|--|--|
+|json.yml| blck-snwmn/gassynchronizer の GAS から invoke されて、PR作成を行う|
+|env.yml|environment sample|
+|||
+
 ## Workflow
 
 ### another repositroy workflow invoker
