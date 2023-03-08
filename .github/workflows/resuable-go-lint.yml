@@ -1,0 +1,19 @@
+name: Go test&lint
+
+on:
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/gosetup
+      - name: Run test
+        run: |
+          go test ./... --shuffle on
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/gosetup
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
