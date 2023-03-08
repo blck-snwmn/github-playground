@@ -7,19 +7,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
-        with:
-          go-version-file: "go.mod"
+      - uses: ./.github/actions/gosetup
       - name: Run test
         run: |
           go test ./... --shuffle on
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
-        with:
-          go-version-file: "go.mod"
+      - uses: ./.github/actions/gosetup
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
