@@ -7,13 +7,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/gosetup
+      - uses: blck-snwmn/github-playground/.github/actions/gosetup@main
       - name: Run test
         run: |
           go test ./... --shuffle on
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/gosetup
+      - uses: blck-snwmn/github-playground/.github/actions/gosetup@main
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
