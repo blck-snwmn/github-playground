@@ -1,0 +1,14 @@
+name: Concurrency Sample 1
+
+on:
+  push:
+
+concurrency:
+  group: 'concurrencysample1'
+
+jobs:
+    sample:
+        runs-on: 'ubuntu-20.04'
+        steps:
+            - name: 'sleep'
+              run: 'sleep 180'
