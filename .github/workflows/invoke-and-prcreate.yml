@@ -41,6 +41,6 @@ jobs:
           NAME: ${{ github.event.inputs.name }}
       - name: comment pr
         run: |
-          gh pr comment --body "`${NAME}`"
+          gh pr comment --body "`go run cmd/generate/main.go 10`"
         env:
           GH_TOKEN: ${{ github.token }}
