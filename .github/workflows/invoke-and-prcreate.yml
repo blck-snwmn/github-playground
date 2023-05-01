@@ -1,0 +1,39 @@
+name: Greet
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'name'
+        required: true
+
+jobs:
+  greet:
+    runs-on: 'ubuntu-20.04'
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+      - name: generate uuid to file
+        run: |
+          go run cmd/generate/main.go 10 > uuid.txt
+      - name: setting git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: commit & push
+        run: |
+          git switch -c "feat/update-file-${NAME}"
+          git add uuid.txt
+          git commit -m "Update uuid.txt"
+          git status
+          git push -u origin "HEAD:feat/generate-${NAME}"
+          gh pr create \
+            --title "Update" \
+            --body "auto generate" \
+            --base "main"  \
+            --label "generated"  
+        env:
+          NAME: ${{ github.event.inputs.name }}
+      - name: comment pr
+        run: |
+          gh pr comment --body "`${NAME}`"
