@@ -1,4 +1,4 @@
-name: Greet
+name: Invoke workflow
 
 on:
   workflow_dispatch:
