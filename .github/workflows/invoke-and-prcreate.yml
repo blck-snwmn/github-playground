@@ -8,11 +8,15 @@ on:
         required: true
 
 jobs:
-  greet:
+  gen-pr-comment:
     runs-on: 'ubuntu-20.04'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
+      - name: Set current datetime as env variable
+        env:
+          TZ: 'Asia/Tokyo' # タイムゾーン指定
+        run: echo "CURRENT_UNIX=$(date +%s)" >> $GITHUB_ENV
       - name: generate uuid to file
         run: |
           go run cmd/generate/main.go 10 > uuid.txt
@@ -22,18 +26,21 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: commit & push
         run: |
-          git switch -c "feat/update-file-${NAME}"
+          git switch -c "feat/update-file-${NAME}-${{env.CURRENT_UNIX}}"
           git add uuid.txt
           git commit -m "Update uuid.txt"
           git status
-          git push -u origin "HEAD:feat/generate-${NAME}"
+          git push -u origin "HEAD:feat/generate-${NAME}-${{env.CURRENT_UNIX}}"
           gh pr create \
             --title "Update" \
             --body "auto generate" \
             --base "main"  \
             --label "generated"  
         env:
+          GH_TOKEN: ${{ github.token }}
           NAME: ${{ github.event.inputs.name }}
       - name: comment pr
         run: |
           gh pr comment --body "`${NAME}`"
+        env:
+          GH_TOKEN: ${{ github.token }}
