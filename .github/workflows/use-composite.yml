@@ -1,0 +1,11 @@
+name: Greet
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: blck-snwmn/github-playground/composite
