@@ -8,4 +8,4 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
-      - uses: blck-snwmn/github-playground/composite
+      - uses: blck-snwmn/github-playground/composite@main
