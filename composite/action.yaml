@@ -1,5 +1,5 @@
 outputs:
-  greet: ${{ steps.greet.outputs.greet }}
+  greet: ${{ steps.show.outputs.greet }}
 runs:
   using: composite
   steps:
