@@ -8,8 +8,7 @@ runs:
       shell: bash
     - run: cat greet
       shell: bash
-    - uses: show
-      id: show
+    - id: show
       run: |
-        echo "greet=$(cat greet)" >> $GITHUB_OUTPUT
+        echo "greet='$(cat greet)'" >> $GITHUB_OUTPUT
       shell: bash
