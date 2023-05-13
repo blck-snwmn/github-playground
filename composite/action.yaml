@@ -11,7 +11,11 @@ runs:
       shell: bash
     - run: cat greet
       shell: bash
+      working-directory: ${{ github.action_path }}
     - id: show
       run: |
         echo "greet='$(cat greet)'" >> $GITHUB_OUTPUT
+      shell: bash
+      working-directory: ${{ github.action_path }}
+    - run: hello.sh
       shell: bash
