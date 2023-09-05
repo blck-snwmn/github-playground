@@ -11,7 +11,7 @@ jobs:
   gen-pr-comment:
     runs-on: 'ubuntu-20.04'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-go@v4
       - name: Set current datetime as env variable
         env:
