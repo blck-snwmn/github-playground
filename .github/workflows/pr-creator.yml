@@ -33,14 +33,14 @@ jobs:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
       - name: checkout dst 
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ${{ inputs.dst-repo }}
           ref: ${{ inputs.dst-branch }}
           token: ${{ steps.generate_token.outputs.token }}
           path: dst
       - name: checkout src 
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ${{ inputs.src-repo }}
           ref: ${{ inputs.src-branch }}
