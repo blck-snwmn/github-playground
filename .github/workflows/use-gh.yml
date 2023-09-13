@@ -1,0 +1,16 @@
+name: use gh
+on:
+  push:
+
+jobs:
+    comment:
+        runs-on: ubuntu-latest
+        steps:
+        - name: run gh
+          run: |
+            gh issue list -l bug > issues.txt
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - name: show issues
+          run: |
+            cat issues.txt
