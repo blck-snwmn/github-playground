@@ -1,0 +1,57 @@
+name: use gh
+on:
+  push:
+
+jobs:
+    notify-to-slack:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+        - id: slack
+          uses: slackapi/slack-github-action@v1.24.0
+          with:
+            channel-id:  ${{ secrets.CHANNEL_ID}}
+            payload: |
+                {
+                    "text": "Deployment started (In Progress)",
+                    "attachments": [
+                    {
+                        "pretext": "Deployment started",
+                        "color": "dbab09",
+                        "fields": [
+                        {
+                            "title": "Status",
+                            "short": true,
+                            "value": "In Progress"
+                        }
+                        ]
+                    }
+                    ]
+                }
+          env:
+            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN}}
+        - run: |
+            sleep 1m
+        - uses: slackapi/slack-github-action@v1.24.0
+          with:
+            channel-id:  ${{ secrets.CHANNEL_ID}}
+            update-ts: ${{ steps.slack.outputs.ts }}
+            payload: |
+                {
+                    "text": "Deployment finished (Completed)",
+                    "attachments": [
+                    {
+                        "pretext": "Deployment finished",
+                        "color": "28a745",
+                        "fields": [
+                        {
+                            "title": "Status",
+                            "short": true,
+                            "value": "Completed"
+                        }
+                        ]
+                    }
+                    ]
+                }
+          env:
+            SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN}}
