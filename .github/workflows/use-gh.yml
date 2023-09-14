@@ -37,7 +37,7 @@ jobs:
                       "type": "section",
                       "text": {
                         "type": "mrkdwn",
-                        "text": "57	OPEN	test3	bug	2023-09-13 18:09:58 +0000 UTC\n55	OPEN	test	bug	2023-09-13 13:30:34 +0000 UTC\"
+                        "text": "57	OPEN	test3	bug	2023-09-13 18:09:58 +0000 UTC\n55	OPEN	test	bug	2023-09-13 13:30:34 +0000 UTC\n"
                       }
                     }
                   ]

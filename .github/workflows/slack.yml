@@ -1,4 +1,4 @@
-name: use gh
+name: slack
 on:
   push:
 
