@@ -21,7 +21,7 @@ jobs:
             script: |
               const fs = require('fs');
               const issues = fs.readFileSync('issues.txt', 'utf8');
-              core.setOutput('issues', issues);
+              core.setOutput('issues', issues.replace(/\n/g, '\\n'));
         - name: Post to a Slack channel
           uses: slackapi/slack-github-action@v1.24.0
           with:
