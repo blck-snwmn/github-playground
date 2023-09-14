@@ -15,8 +15,14 @@ jobs:
         - name: show issues
           run: |
             cat issues.txt
-        - name: Post to a Slack channel
+        - uses: actions/github-script@v6
           id: slack
+          with:
+            script: |
+              const fs = require('fs');
+              const issues = fs.readFileSync('issues.txt', 'utf8');
+              core.setOutput('issues', issues);
+        - name: Post to a Slack channel
           uses: slackapi/slack-github-action@v1.24.0
           with:
             # Slack channel id, channel name, or user id to post message.
@@ -31,7 +37,7 @@ jobs:
                         "type": "section",
                         "text": {
                         "type": "mrkdwn",
-                        "text": "`cat issues.txt`"
+                        "text": "${{ steps.slack.outputs.issues }}"
                         }
                     }
                     ]
