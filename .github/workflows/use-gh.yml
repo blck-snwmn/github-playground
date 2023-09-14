@@ -9,7 +9,7 @@ jobs:
         - uses: actions/checkout@v4
         - name: run gh
           run: |
-            gh issue list -l bug --json url | jq '.[].url' > issues.txt
+            gh issue list -l bug --json url | jq -r '.[].url' > issues.txt
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         - name: show issues
