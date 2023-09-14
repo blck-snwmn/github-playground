@@ -31,16 +31,16 @@ jobs:
             # For posting a rich message using Block Kit
             payload: |
                 {
-                    "text": "GitHub Action build result",
-                    "blocks": [
+                  "text": "GitHub Action build result",
+                  "blocks": [
                     {
-                        "type": "section",
-                        "text": {
+                      "type": "section",
+                      "text": {
                         "type": "mrkdwn",
-                        "text": "${{ steps.slack.outputs.issues }}"
-                        }
+                        "text": "57	OPEN	test3	bug	2023-09-13 18:09:58 +0000 UTC\n55	OPEN	test	bug	2023-09-13 13:30:34 +0000 UTC\"
+                      }
                     }
-                    ]
+                  ]
                 }
           env:
             SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
