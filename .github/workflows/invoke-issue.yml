@@ -1,0 +1,16 @@
+name: tritter issue
+ 
+on:
+    issues:
+        types: [opened, reopened, labeled]
+
+jobs:
+  issued:
+    if: github.event.issue.pull_request == 'issues'
+    runs-on: ubuntu-latest
+    steps:
+        - name: Run
+          run: |
+            echo ${{ github.event.issue.title}}
+            echo ${{ github.event.issue.labels}}
+            echo ${{ github.event.issue.body}}
