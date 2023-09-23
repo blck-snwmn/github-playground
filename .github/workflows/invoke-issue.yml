@@ -13,5 +13,5 @@ jobs:
           run: |
             echo ${{ github.event.issue.title}}
             echo ${{ github.event.issue.labels}}
-            echo ${{ contains(github.event.issue.labels, 'bug') }}
+            echo ${{ contains(github.event.issue.labels.*.name, 'bug') }}
             echo ${{ github.event.issue.body}}
