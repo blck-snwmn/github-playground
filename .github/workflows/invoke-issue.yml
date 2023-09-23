@@ -6,7 +6,7 @@ on:
 
 jobs:
   issued:
-    if: github.event.issue.pull_request == 'issues'
+    if: github.event_name == 'issues'
     runs-on: ubuntu-latest
     steps:
         - name: Run
