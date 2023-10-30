@@ -16,3 +16,8 @@ jobs:
         steps:
             - name: run
               run: aws s3 ls \s3://my-bucket \--recursive \--human-readable 
+    do3:
+        runs-on: ubuntu-latest
+        steps:
+            - name: run
+              run: aws s3 ls \s3://my-bucket --recursiveZ --human-readableZ 
