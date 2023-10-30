@@ -11,11 +11,16 @@ jobs:
                 s3://my-bucket \
                 --recursive \
                 --human-readable 
-    do2:
+    do2-1:
         runs-on: ubuntu-latest
         steps:
             - name: run
               run: aws s3 ls \s3://my-bucket \--recursive \--human-readable 
+    do2-2:
+        runs-on: ubuntu-latest
+        steps:
+            - name: run
+              run: aws s3 ls \s3://my-bucket \ --recursive \ --human-readable 
     do3:
         runs-on: ubuntu-latest
         steps:
