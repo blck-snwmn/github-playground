@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: run
-              run: echo "
-                --xxx
-                --yyy
-                "
+              run: echo " \
+                --xxx \
+                --yyy \
+                " 
