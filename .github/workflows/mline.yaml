@@ -7,7 +7,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: run
-              run: echo " \
-                --xxx \
-                --yyy \
-                " 
+              run: aws s3 ls \
+                s3://my-bucket
