@@ -8,4 +8,5 @@ jobs:
         steps:
             - name: run
               run: aws s3 ls \
-                s3://my-bucket
+                s3://my-bucket \
+                --recursive
