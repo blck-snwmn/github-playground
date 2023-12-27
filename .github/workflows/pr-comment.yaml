@@ -1,0 +1,37 @@
+name: Sticky Pull Request Comment
+on:
+    pull_request:
+
+jobs:
+    comment-1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: generate multi line comment
+              run: |
+                    now=$(date)
+                    cat <<EOF > test
+                    comment-1
+                    line2
+                    line3
+                    $now
+                    EOF
+            - uses: marocchino/sticky-pull-request-comment@v2
+              with:
+                header: comment-1
+                path: test
+    comment-2:
+        runs-on: ubuntu-latest
+        steps:
+            - name: generate multi line comment
+              run: |
+                    now=$(date)
+                    cat <<EOF > test
+                    comment-2
+                    line2
+                    line3
+                    $now
+                    EOF
+            - uses: marocchino/sticky-pull-request-comment@v2
+              with:
+                header: comment-2
+                path: test
