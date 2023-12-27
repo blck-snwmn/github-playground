@@ -1,4 +1,4 @@
-name: multi line
+name: Sticky Pull Request Comment
 on:
     pull_request:
 
