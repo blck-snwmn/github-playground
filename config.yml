@@ -1,0 +1,15 @@
+jobs:
+  jobname1:
+    name: lint
+    description: 'this is description' 
+    tags: 
+      - tag1
+      - tag2
+  jobname2:
+    name: test
+    description: 'this is description' 
+  jobname3:
+    name: lint
+    description: 'this is description' 
+    tags: 
+      - tag2

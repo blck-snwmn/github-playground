@@ -1,0 +1,14 @@
+name: yaml validate
+
+on:
+  pull_request:
+
+jobs:
+  validate-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check if tags exists
+        uses: mikefarah/yq@master
+        with:
+          cmd:  yq -e '[.jobs.* | has("tags")] | all' config.yml
